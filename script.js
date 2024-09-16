@@ -8,6 +8,10 @@ playerImage.src = 'player.png';
 const carImage = new Image();
 carImage.src = 'car.png';
 
+// Cargar la música de fondo
+const backgroundMusic = new Audio('background-music.mp3'); // Reemplaza con la ruta de tu archivo de música
+backgroundMusic.volume = 0.1;
+
 // Definir el área de meta (zona de llegada)
 const goalArea = {
     x: 0,
@@ -151,6 +155,7 @@ function render() {
 
 // Bucle del juego
 function gameLoop() {
+    backgroundMusic.play();
     updatePlayer();
     updateCars();
     checkCollisions();
@@ -160,9 +165,10 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Esperar a que las imágenes se carguen antes de iniciar el juego
+// Esperar a que las imágenes y la música se carguen antes de iniciar el juego
 playerImage.onload = () => {
     carImage.onload = () => {
+         // Reproducir música de fondo
         gameLoop();  // Iniciar el bucle del juego cuando las imágenes estén listas
     };
 };
